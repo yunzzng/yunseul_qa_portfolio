@@ -5,7 +5,6 @@ import portfolios from "./data/portfolios";
 import educationAndExperience from "./data/educationAndExperience";
 import skills from "./data/skills";
 import profileImg from "/img/yunseul.jpg";
-import notionIcon from "/icons/skill/notion.png";
 import githubIcon from "/icons/skill/github.png";
 import aboutMe from "./data/about";
 
@@ -15,7 +14,7 @@ const Resume: FC = () => {
       <aside className={styles.sidebar}>
         <img src={profileImg} alt="Profile" className={styles.profileImage} />
         <h2 className={styles.name}>이윤슬</h2>
-        <p className={styles.title}>Front-End Developer</p>
+        <p className={styles.title}>QA Engineer</p>
 
         <div className={styles.section}>
           <h3 className={styles.sectionTitle}>연락처</h3>
@@ -28,13 +27,6 @@ const Resume: FC = () => {
                 rel="noopener noreferrer"
               >
                 <img src={githubIcon} alt="GitHub" className={styles.icon} />
-              </a>
-              <a
-                href="https://leeyunseul.notion.site/1a023f8c54e680b4965deb2b1706fe03"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img src={notionIcon} alt="Notion" className={styles.icon} />
               </a>
             </li>
           </ul>
@@ -81,9 +73,13 @@ const Resume: FC = () => {
       </aside>
 
       <main className={styles.mainContent}>
-        <h1 className={styles.mainHeading}>이윤슬</h1>
+        <h1 className={styles.mainHeading}>데이터 기반 검증과 자동화를 통해 품질을 개선하는 QA 엔지니어</h1>
         <p className={styles.subtitle}>{aboutMe.introduction}</p>
-        <p className={styles.subtitle}>{aboutMe.details}</p>
+        {aboutMe.details.map((text, idx) => (
+          <p key={idx} className={styles.subtitle}>
+            {text}
+          </p>
+        ))}
 
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>경력</h2>
@@ -184,18 +180,6 @@ const Resume: FC = () => {
             ))}
           </div>
         </section>
-
-        {/* <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>자격증 & 수상</h2>
-          <ul className={styles.list}>
-            {certifications.map((cert, index) => (
-              <li key={index}>
-                <span className={styles.certificationName}>{cert.name}</span>
-                <span className={styles.certificationDate}>({cert.date})</span>
-              </li>
-            ))}
-          </ul>
-        </section> */}
       </main>
     </div>
   );
