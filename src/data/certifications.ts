@@ -1,4 +1,5 @@
 const certifications = [
+  { name: "ISTQB (CTFL)", date: "2026.06.18" },
   { name: "공공데이터 웹서비스 프로젝트 대상", date: "2025.03.05" },
   { name: "사무자동화 산업기사", date: "2024.06.18" },
   // { name: "웹디자인 기능사 (필기)", date: "2024.04.18" },

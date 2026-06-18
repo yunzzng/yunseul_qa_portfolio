@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import styles from "./resume.module.css";
 import certifications from "./data/certifications";
 import portfolios from "./data/portfolios";
@@ -9,6 +9,35 @@ import githubIcon from "/icons/skill/github.png";
 import aboutMe from "./data/about";
 
 const Resume: FC = () => {
+  const [expandedImage, setExpandedImage] = useState<{
+    src: string;
+    alt: string;
+  } | null>(null);
+
+  useEffect(() => {
+    if (!expandedImage) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setExpandedImage(null);
+      }
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [expandedImage]);
+
+  const openOutput = (url: string) => {
+    if (url) {
+      window.open(url, "_blank", "noopener,noreferrer");
+    }
+  };
+
   return (
     <div className={styles.container}>
       <aside className={styles.sidebar}>
@@ -103,30 +132,30 @@ const Resume: FC = () => {
               <div
                 key={index}
                 className={styles.portfolioCard}
-                onClick={() => window.open(portfolio.output, "_blank")}
+                onClick={() => openOutput(portfolio.output)}
               >
-                <div className={styles.portfolioContent}>
-                  <div className={styles.portfolioText}>
-                    <div className={styles.portfolioHeader}>
-                      <h3 className={styles.portfolioTitle}>
-                        {portfolio.title}
-                        <span className={styles.portfolioDate}>
-                          {portfolio.date}
-                        </span>
-                      </h3>
-                    </div>
+                <div className={styles.portfolioHeader}>
+                  <h3 className={styles.portfolioTitle}>
+                    {portfolio.title}
+                    <span className={styles.portfolioDate}>
+                      {portfolio.date}
+                    </span>
+                  </h3>
+                </div>
 
-                    <p className={styles.portfolioDescription}>
-                      <strong className={styles.projectLabel}>
-                        {portfolio.subtitle}
-                      </strong>
-                      <span className={styles.projectText}>
-                        {portfolio.description}
-                      </span>
-                    </p>
+                <p className={styles.portfolioDescription}>
+                  <strong className={styles.projectLabel}>
+                    {portfolio.subtitle}
+                  </strong>
+                  <span className={styles.projectText}>
+                    {portfolio.description}
+                  </span>
+                </p>
 
-                    <hr></hr>
+                <hr className={styles.portfolioDivider} />
 
+                <div className={styles.portfolioDetailRow}>
+                  <div className={styles.portfolioDetails}>
                     <p className={styles.portfolioField}>
                       <strong>기여도:</strong>
                       <span className={styles.portfolioValue}>
@@ -168,7 +197,16 @@ const Resume: FC = () => {
                     )}
                   </div>
 
-                  <div className={styles.portfolioImageBox}>
+                  <div
+                    className={styles.portfolioImageBox}
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      setExpandedImage({
+                        src: portfolio.image,
+                        alt: `${portfolio.title} 썸네일`,
+                      });
+                    }}
+                  >
                     <img
                       src={portfolio.image}
                       alt={`${portfolio.title} 썸네일`}
@@ -181,6 +219,26 @@ const Resume: FC = () => {
           </div>
         </section>
       </main>
+
+      {expandedImage && (
+        <div className={styles.imageModalOverlay} role="dialog" aria-modal="true">
+          <div className={styles.imageModalContent}>
+            <button
+              type="button"
+              className={styles.imageModalClose}
+              onClick={() => setExpandedImage(null)}
+              aria-label="이미지 닫기"
+            >
+              ×
+            </button>
+            <img
+              src={expandedImage.src}
+              alt={expandedImage.alt}
+              className={styles.imageModalImage}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
