@@ -90,19 +90,19 @@ const portfolios = [
     output: "https://checklist-auto-dashboard.vercel.app/",
     image: "/img/checklist-auto-dashboard.png"
   },
-  {
-    title: "엔카 서비스 이차 어때",
-    subtitle: "이미지를 자동으로 .webp으로 변환하는 vite플러그인",
-    description:
-      "이미지 최적화는 페이지 로딩 속도를 개선하는 핵심 요소 중 하나입니다. 본 프로젝트는 Vite 환경에서 이미지 최적화를 자동으로 수행하는 플러그인(vite-plugin-optimize-image)을 개발하는 것을 목표로 하였습니다. 별도의 이미지 최적화 작업을 하지 않아도 자동으로 최적화된 이미지를 제공할 수 있도록 합니다.",
-    date: "2025-0",
-    contribution: "개인 프로젝트",
-    dataset: [""],
-    analysis: [""],
-    insight: [""],
-    output: "",
-    image: "/img/plugin.png",
-  },
+  // {
+  //   title: "엔카 서비스 이차 어때",
+  //   subtitle: "이미지를 자동으로 .webp으로 변환하는 vite플러그인",
+  //   description:
+  //     "이미지 최적화는 페이지 로딩 속도를 개선하는 핵심 요소 중 하나입니다. 본 프로젝트는 Vite 환경에서 이미지 최적화를 자동으로 수행하는 플러그인(vite-plugin-optimize-image)을 개발하는 것을 목표로 하였습니다. 별도의 이미지 최적화 작업을 하지 않아도 자동으로 최적화된 이미지를 제공할 수 있도록 합니다.",
+  //   date: "2025-0",
+  //   contribution: "개인 프로젝트",
+  //   dataset: [""],
+  //   analysis: [""],
+  //   insight: [""],
+  //   output: "",
+  //   image: "/img/plugin.png",
+  // },
 ];
 
 export default portfolios;
