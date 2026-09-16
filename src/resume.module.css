@@ -207,9 +207,9 @@
 }
 
 .jobDescriptionList li {
-  font-size: 14px;
+  font-size: 15px;
   margin-bottom: 6px;
-  line-height: 1.5;
+  line-height: 1.6;
   list-style: disc;
   overflow-wrap: anywhere;
   word-break: break-word;
