@@ -29,15 +29,14 @@ export type SkillGroup = {
 
 const skills: SkillGroup[] = [
   {
-    category: "QA·자동화",
+    category: "테스트·자동화",
     items: [
-      { name: "Jira", icon: jiraIcon },
-      { name: "Postman", icon: postmanIcon },
       { name: "Playwright", icon: playwrightIcon },
+      { name: "Postman", icon: postmanIcon },
     ],
   },
   {
-    category: "API·데이터 검증",
+    category: "데이터 검증",
     items: [
       { name: "DBeaver", icon: dbeaverIcon },
       { name: "PostgreSQL", icon: postgresqlIcon },
@@ -48,18 +47,24 @@ const skills: SkillGroup[] = [
   {
     category: "협업·형상 관리",
     items: [
+      { name: "Jira", icon: jiraIcon },
+      { name: "Confluence", icon: confluenceIcon },
       { name: "GitHub", icon: githubIcon },
       { name: "GitLab", icon: gitlabIcon },
-      { name: "Confluence", icon: confluenceIcon },
       { name: "Notion", icon: notionIcon },
     ],
   },
   {
-    category: "개발·AI·디자인",
+    category: "개발·AI 활용",
     items: [
       { name: "Python", icon: pythonIcon },
       { name: "Claude", icon: claudeIcon },
       { name: "Cursor", icon: cursorIcon },
+    ],
+  },
+  {
+    category: "디자인",
+    items: [
       { name: "Figma", icon: figmaIcon },
       { name: "Adobe XD", icon: adobeXdIcon },
       { name: "Photoshop", icon: photoshopIcon },

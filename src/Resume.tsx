@@ -62,16 +62,29 @@ const Resume: FC = () => {
         </div>
 
         <div className={styles.section}>
-          <h3 className={styles.sectionTitle}>교육</h3>
-          <ul className={styles.list}>
-            {educationAndExperience.education.map((edu, index) => (
-              <li key={index} className={styles.eduItem}>
-                <div className={styles.school}>{edu.school}</div>
-                <div className={styles.degree}>{edu.degree}</div>
-                <div className={styles.period}>{edu.period}</div>
-              </li>
+          <h3 className={styles.sectionTitle}>기술 스택</h3>
+          <div className={styles.sidebarSkillList}>
+            {skills.map((group) => (
+              <div key={group.category} className={styles.sidebarSkillGroup}>
+                <h4 className={styles.sidebarSkillGroupTitle}>{group.category}</h4>
+                <div className={styles.sidebarSkillItems}>
+                  {group.items.map((skill) => (
+                    <span key={`${group.category}-${skill.name}`} className={styles.sidebarSkillItem}>
+                      {skill.icon && (
+                        <img
+                          src={skill.icon}
+                          alt=""
+                          aria-hidden="true"
+                          className={styles.skillIcon}
+                        />
+                      )}
+                      {skill.name}
+                    </span>
+                  ))}
+                </div>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
 
         <div className={styles.section}>
@@ -87,24 +100,16 @@ const Resume: FC = () => {
         </div>
 
         <div className={styles.section}>
-          <h3 className={styles.sectionTitle}>기술 스택</h3>
-          <div className={styles.sidebarSkillList}>
-            {skills.map((group) =>
-              group.items.map((skill) => (
-                <span key={`${group.category}-${skill.name}`} className={styles.sidebarSkillItem}>
-                  {skill.icon && (
-                    <img
-                      src={skill.icon}
-                      alt=""
-                      aria-hidden="true"
-                      className={styles.skillIcon}
-                    />
-                  )}
-                  {skill.name}
-                </span>
-              ))
-            )}
-          </div>
+          <h3 className={styles.sectionTitle}>교육</h3>
+          <ul className={styles.list}>
+            {educationAndExperience.education.map((edu, index) => (
+              <li key={index} className={styles.eduItem}>
+                <div className={styles.school}>{edu.school}</div>
+                <div className={styles.degree}>{edu.degree}</div>
+                <div className={styles.period}>{edu.period}</div>
+              </li>
+            ))}
+          </ul>
         </div>
       </aside>
 
@@ -117,10 +122,11 @@ const Resume: FC = () => {
           <div className={styles.timeline}>
             {educationAndExperience.experience.map((exp, index) => (
               <div key={index} className={styles.timelineItem}>
-                <h3 className={styles.jobTitle}>{exp.role}</h3>
+                <h3 className={styles.jobTitle}>{exp.company}</h3>
                 <p className={styles.jobCompany}>
-                  {exp.company} ({exp.period})
+                  {exp.role} · {exp.period}
                 </p>
+                <p className={styles.jobSectionLabel}>담당 업무</p>
                 <ul className={styles.jobDescriptionList}>
                   {exp.description.map((item, idx) => (
                     <li key={idx}>{item}</li>
@@ -139,6 +145,14 @@ const Resume: FC = () => {
                 key={index}
                 className={styles.portfolioCard}
                 onClick={() => openOutput(portfolio.output)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") {
+                    openOutput(portfolio.output);
+                  }
+                }}
+                role="link"
+                tabIndex={0}
+                aria-label={`${portfolio.title} 프로젝트 보기`}
               >
                 <div className={styles.portfolioHeader}>
                   <h3 className={styles.portfolioTitle}>
@@ -158,17 +172,12 @@ const Resume: FC = () => {
                   </span>
                 </p>
 
+                <p className={styles.projectOpenHint}>프로젝트 보기 ↗</p>
+
                 <hr className={styles.portfolioDivider} />
 
                 <div className={styles.portfolioDetailRow}>
                   <div className={styles.portfolioDetails}>
-                    <p className={styles.portfolioField}>
-                      <strong>수행 형태:</strong>
-                      <span className={styles.portfolioValue}>
-                        {portfolio.executionType}
-                      </span>
-                    </p>
-
                     {portfolio.implementations && (
                       <div className={styles.portfolioField}>
                         <strong>주요 구현:</strong>
@@ -180,13 +189,26 @@ const Resume: FC = () => {
                       </div>
                     )}
 
-                    {portfolio.result && (
-                      <p className={styles.portfolioField}>
-                        <strong>검증 결과 또는 기대 효과:</strong>
-                        <span className={styles.portfolioValue}>
-                          {portfolio.result}
-                        </span>
-                      </p>
+                    {portfolio.verification && (
+                      <div className={styles.portfolioField}>
+                        <strong>검증 결과:</strong>
+                        <ul className={styles.portfolioList}>
+                          {portfolio.verification.map((item, idx) => (
+                            <li key={idx}>{item}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                    {portfolio.expectedEffects && (
+                      <div className={styles.portfolioField}>
+                        <strong>기대 효과:</strong>
+                        <ul className={styles.portfolioList}>
+                          {portfolio.expectedEffects.map((item, idx) => (
+                            <li key={idx}>{item}</li>
+                          ))}
+                        </ul>
+                      </div>
                     )}
                   </div>
 
