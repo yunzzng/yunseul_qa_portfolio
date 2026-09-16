@@ -2,9 +2,11 @@ interface Portfolio {
   title: string;
   subtitle: string;
   overview: string;
-  date: string;
   executionType: string;
   implementations: string[];
+  role?: string;
+  featureLabel?: string;
+  ctaLabel: string;
   verification?: string[];
   expectedEffects?: string[];
   output: string;
@@ -17,7 +19,6 @@ const portfolios: Portfolio[] = [
     subtitle: "개인 프로젝트 · 2026.04",
     overview:
       "로그인 및 주요 사용자 시나리오를 자동 검증하고, 실행 결과와 실패 증적을 대시보드에서 확인할 수 있도록 구현한 개인 프로젝트입니다.",
-    date: "2026-04",
     executionType: "개인 프로젝트",
     implementations: [
       "로그인 및 주요 사용자 시나리오 E2E 테스트",
@@ -25,6 +26,7 @@ const portfolios: Portfolio[] = [
       "실패 시 스크린샷 및 HTML Report 생성",
       "테스트 결과 대시보드 제공",
     ],
+    ctaLabel: "테스트 대상 서비스 보기 ↗",
     output: "https://lovely-goods-shop.vercel.app/",
     image: "/img/qa-dashboard.png"
   },
@@ -33,14 +35,16 @@ const portfolios: Portfolio[] = [
     subtitle: "엔카 해커톤 · 2026.05 · B2C 스쿼드 프로젝트",
     overview:
       "웹 서비스의 API 요청을 수집하고 호출 흐름과 응답 정보를 시각화하는 브라우저 확장 프로그램 및 대시보드 프로젝트입니다.",
-    date: "2026-05",
     executionType: "B2C 스쿼드 프로젝트",
+    role: "프로토타입 설계와 UI 시각화를 담당했습니다.",
+    featureLabel: "프로젝트 주요 기능",
     implementations: [
       "페이지 진입 시 API 요청 자동 감지",
       "API 호출 순서 및 Flow Tree 시각화",
       "응답 시간, 상태 코드, 호출 횟수 통계 제공",
-      "API 호출 현황 대시보드 구현",
+      "API 호출 현황 대시보드",
     ],
+    ctaLabel: "프로젝트 보기 ↗",
     output: "https://encar-hackathon.vercel.app/",
     image: "/img/encar-hackathon.png",
   },
@@ -49,7 +53,6 @@ const portfolios: Portfolio[] = [
     subtitle: "개인 프로젝트 · 2026.06",
     overview:
       "Figma 기획 문서를 기반으로 테스트 케이스를 생성하고, 실행 결과와 회귀 테스트 케이스 및 리포트를 관리할 수 있도록 구현한 개인 프로젝트입니다.",
-    date: "2026-06",
     executionType: "개인 프로젝트",
     implementations: [
       "Figma 기획 문서 기반 테스트 케이스 생성",
@@ -57,6 +60,7 @@ const portfolios: Portfolio[] = [
       "회귀 테스트 케이스 생성",
       "테스트 결과 리포트 생성",
     ],
+    ctaLabel: "TC 관리 플랫폼 보기 ↗",
     output: "https://checklist-auto-dashboard.vercel.app/",
     image: "/img/checklist-auto-dashboard.png"
   },

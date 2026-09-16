@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, MouseEvent, useCallback, useEffect, useRef, useState } from "react";
 import styles from "./resume.module.css";
 import certifications from "./data/certifications";
 import portfolios from "./data/portfolios";
@@ -13,29 +13,48 @@ const Resume: FC = () => {
     src: string;
     alt: string;
   } | null>(null);
+  const imageTriggerRef = useRef<HTMLElement | null>(null);
+  const closeButtonRef = useRef<HTMLButtonElement | null>(null);
+
+  const closeExpandedImage = useCallback(() => {
+    setExpandedImage(null);
+    window.setTimeout(() => {
+      imageTriggerRef.current?.focus();
+    }, 0);
+  }, []);
 
   useEffect(() => {
     if (!expandedImage) return;
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        setExpandedImage(null);
+        closeExpandedImage();
       }
     };
 
     document.body.style.overflow = "hidden";
     window.addEventListener("keydown", handleKeyDown);
+    window.setTimeout(() => {
+      closeButtonRef.current?.focus();
+    }, 0);
 
     return () => {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [expandedImage]);
+  }, [closeExpandedImage, expandedImage]);
 
-  const openOutput = (url: string) => {
-    if (url) {
-      window.open(url, "_blank", "noopener,noreferrer");
-    }
+  const openExpandedImage = (
+    event: MouseEvent<HTMLButtonElement>,
+    image: string,
+    title: string
+  ) => {
+    event.stopPropagation();
+    imageTriggerRef.current = event.currentTarget;
+    setExpandedImage({
+      src: image,
+      alt: `${title} 썸네일`,
+    });
   };
 
   return (
@@ -141,26 +160,20 @@ const Resume: FC = () => {
           <h2 className={styles.sectionTitle}>프로젝트</h2>
           <div className={styles.portfolioGrid}>
             {portfolios.map((portfolio, index) => (
-              <div
+              <article
                 key={index}
                 className={styles.portfolioCard}
-                onClick={() => openOutput(portfolio.output)}
-                onKeyDown={(event) => {
-                  if (event.key === "Enter") {
-                    openOutput(portfolio.output);
-                  }
-                }}
-                role="link"
-                tabIndex={0}
-                aria-label={`${portfolio.title} 프로젝트 보기`}
               >
+                <a
+                  href={portfolio.output}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.portfolioCardLink}
+                  aria-label={`${portfolio.title} ${portfolio.ctaLabel}`}
+                />
+
                 <div className={styles.portfolioHeader}>
-                  <h3 className={styles.portfolioTitle}>
-                    {portfolio.title}
-                    <span className={styles.portfolioDate}>
-                      {portfolio.date}
-                    </span>
-                  </h3>
+                  <h3 className={styles.portfolioTitle}>{portfolio.title}</h3>
                 </div>
 
                 <p className={styles.portfolioDescription}>
@@ -172,15 +185,22 @@ const Resume: FC = () => {
                   </span>
                 </p>
 
-                <p className={styles.projectOpenHint}>프로젝트 보기 ↗</p>
+                <p className={styles.projectOpenHint}>{portfolio.ctaLabel}</p>
 
                 <hr className={styles.portfolioDivider} />
 
                 <div className={styles.portfolioDetailRow}>
                   <div className={styles.portfolioDetails}>
+                    {portfolio.role && (
+                      <div className={styles.portfolioField}>
+                        <strong>담당 역할</strong>
+                        <p className={styles.portfolioText}>{portfolio.role}</p>
+                      </div>
+                    )}
+
                     {portfolio.implementations && (
                       <div className={styles.portfolioField}>
-                        <strong>주요 구현:</strong>
+                        <strong>{portfolio.featureLabel ?? "주요 구현"}</strong>
                         <ul className={styles.portfolioList}>
                           {portfolio.implementations.map((item, idx) => (
                             <li key={idx}>{item}</li>
@@ -212,24 +232,22 @@ const Resume: FC = () => {
                     )}
                   </div>
 
-                  <div
+                  <button
+                    type="button"
                     className={styles.portfolioImageBox}
                     onClick={(event) => {
-                      event.stopPropagation();
-                      setExpandedImage({
-                        src: portfolio.image,
-                        alt: `${portfolio.title} 썸네일`,
-                      });
+                      openExpandedImage(event, portfolio.image, portfolio.title);
                     }}
+                    aria-label={`${portfolio.title} 이미지 확대`}
                   >
                     <img
                       src={portfolio.image}
                       alt={`${portfolio.title} 썸네일`}
                       className={styles.portfolioImage}
                     />
-                  </div>
+                  </button>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
         </section>
@@ -239,9 +257,10 @@ const Resume: FC = () => {
         <div className={styles.imageModalOverlay} role="dialog" aria-modal="true">
           <div className={styles.imageModalContent}>
             <button
+              ref={closeButtonRef}
               type="button"
               className={styles.imageModalClose}
-              onClick={() => setExpandedImage(null)}
+              onClick={closeExpandedImage}
               aria-label="이미지 닫기"
             >
               ×
