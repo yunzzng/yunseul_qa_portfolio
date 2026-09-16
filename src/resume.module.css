@@ -289,12 +289,16 @@
   min-width: 0;
 }
 
-.portfolioImageBox {
+.portfolioImagePanel {
   position: relative;
   z-index: 2;
   flex-shrink: 0;
   width: 360px;
   max-width: 38%;
+}
+
+.portfolioImageBox {
+  width: 100%;
   aspect-ratio: 16 / 10;
   height: auto;
   border-radius: 8px;
@@ -308,6 +312,15 @@
   box-sizing: border-box;
   overflow: hidden;
   cursor: zoom-in;
+}
+
+.portfolioImageCaption {
+  margin: 6px 0 0;
+  color: #666;
+  font-size: 12px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  word-break: keep-all;
 }
 
 button.portfolioImageBox {
@@ -491,9 +504,12 @@ button.portfolioImageBox {
     flex-direction: column;
   }
 
-  .portfolioImageBox {
+  .portfolioImagePanel {
     width: 100%;
     max-width: 100%;
+  }
+
+  .portfolioImageBox {
     height: auto;
     aspect-ratio: 16 / 10;
   }

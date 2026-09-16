@@ -246,20 +246,27 @@ const Resume: FC = () => {
                     )}
                   </div>
 
-                  <button
-                    type="button"
-                    className={styles.portfolioImageBox}
-                    onClick={(event) => {
-                      openExpandedImage(event, portfolio.image, portfolio.title);
-                    }}
-                    aria-label={`${portfolio.title} 이미지 확대`}
-                  >
-                    <img
-                      src={portfolio.image}
-                      alt={`${portfolio.title} 썸네일`}
-                      className={styles.portfolioImage}
-                    />
-                  </button>
+                  <div className={styles.portfolioImagePanel}>
+                    <button
+                      type="button"
+                      className={styles.portfolioImageBox}
+                      onClick={(event) => {
+                        openExpandedImage(event, portfolio.image, portfolio.title);
+                      }}
+                      aria-label={`${portfolio.title} 이미지 확대`}
+                    >
+                      <img
+                        src={portfolio.image}
+                        alt={`${portfolio.title} 썸네일`}
+                        className={styles.portfolioImage}
+                      />
+                    </button>
+                    {portfolio.imageCaption && (
+                      <p className={styles.portfolioImageCaption}>
+                        {portfolio.imageCaption}
+                      </p>
+                    )}
+                  </div>
                 </div>
               </article>
             ))}

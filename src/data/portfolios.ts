@@ -11,6 +11,7 @@ interface Portfolio {
   expectedEffects?: string[];
   output: string;
   image: string;
+  imageCaption?: string;
 }
 
 const portfolios: Portfolio[] = [
@@ -18,23 +19,24 @@ const portfolios: Portfolio[] = [
     title: "Playwright 기반 E2E 테스트 자동화",
     subtitle: "개인 프로젝트 · 2026.04",
     overview:
-      "로그인과 장바구니 담기 사용자 시나리오를 대상으로, 의도적으로 오류가 발생하도록 구성한 환경에서 자동화 테스트를 수행하고 실패 시 스크린샷과 실행 기록을 남기는 프로젝트입니다.",
+      "로그인과 장바구니 담기 시나리오를 자동화하고, 잘못된 로그인 정보를 입력하도록 설정해 테스트 실패 시 스크린샷과 실행 기록이 남는 과정을 확인한 개인 프로젝트입니다.",
     executionType: "개인 프로젝트",
     implementations: [
       "로그인 및 장바구니 담기 시나리오 자동화",
-      "의도적으로 구성한 오류 상황에 대한 테스트 실행",
-      "실패 시 스크린샷 캡처 및 실행 결과 기록",
-      "테스트 결과와 실패 증적 확인",
+      "잘못된 로그인 정보로 실패 상황 구성",
+      "테스트 실패 시 스크린샷 캡처 및 실행 결과 기록",
+      "실행 결과와 실패 증적 확인",
     ],
     ctaLabel: "테스트 대상 서비스 보기 ↗",
     output: "https://lovely-goods-shop.vercel.app/",
-    image: "/img/qa-dashboard.png"
+    image: "/img/qa-dashboard.png",
+    imageCaption: "잘못된 로그인 정보로 유도한 테스트 실패 및 증적 수집 결과",
   },
   {
     title: "monologo — API 호출 흐름 분석 도구",
     subtitle: "엔카 해커톤 · 2026.05 · B2C 스쿼드 프로젝트",
     overview:
-      "API 오류 분석 접근 제약으로 인한 스쿼드 구성원의 부담을 줄이기 위해, 웹 서비스의 API 요청 흐름과 응답 정보를 시각화한 브라우저 확장 프로그램 및 대시보드 프로젝트입니다.",
+      "개발 외 직무 구성원이 API 오류 정보를 확인하기 어려운 문제를 줄이기 위해, API 호출 흐름과 응답 정보를 시각화한 브라우저 확장 프로그램 및 대시보드입니다.",
     executionType: "B2C 스쿼드 프로젝트",
     role: "프로토타입 설계 및 UI 시각화를 담당했습니다.",
     featureLabel: "프로젝트 주요 기능",
@@ -43,7 +45,6 @@ const portfolios: Portfolio[] = [
       "API 호출 순서 및 Flow Tree 시각화",
       "응답 시간, 상태 코드, 호출 횟수 통계 제공",
       "API 호출 현황 대시보드",
-      "확장 프로그램을 통한 API 오류 정보 확인 및 협업 지원",
     ],
     ctaLabel: "프로젝트 보기 ↗",
     output: "https://encar-hackathon.vercel.app/",
