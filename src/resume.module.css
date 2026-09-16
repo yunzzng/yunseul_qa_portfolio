@@ -3,8 +3,10 @@
   justify-content: center;
   align-items: flex-start;
   background-color: #121212;
-  width: 1440px;
+  max-width: 1440px;
+  width: 100%;
   margin: 0 auto;
+  overflow-x: hidden;
 }
 
 .contentWrapper {
@@ -19,7 +21,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex: 0 0 300px;
   width: 300px;
+  box-sizing: border-box;
+  word-break: keep-all;
 }
 
 .profileImage {
@@ -82,6 +87,7 @@
   padding: 5px 10px;
   border-radius: 5px;
   border-bottom: 1px solid #ddd;
+  word-break: keep-all;
 }
 
 .icon {
@@ -98,13 +104,31 @@
   margin-top: 10px;
 }
 
+.sidebarSkillList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.sidebarSkillItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
 .skillIcon {
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  flex: 0 0 auto;
 }
 
 .mainContent {
   flex-grow: 3;
+  min-width: 0;
   padding: 40px;
   background-color: white;
   display: flex;
@@ -117,16 +141,26 @@
   font-size: 26px;
   font-weight: bold;
   margin-bottom: 15px;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
 }
 
 .subtitle {
   font-size: 16px;
   line-height: 1.8;
   white-space: pre-line;
+  overflow-wrap: anywhere;
 }
 
-.jobDescription {
-  white-space: pre-line;
+.jobDescriptionList {
+  margin: 10px 0 0;
+  padding-left: 18px;
+}
+
+.jobDescriptionList li {
+  margin-bottom: 6px;
+  line-height: 1.7;
+  list-style: disc;
 }
 
 .sectionTitle {
@@ -149,6 +183,7 @@
   background: #f9f9f9;
   border-radius: 8px;
   padding-left: 10px;
+  min-width: 0;
 }
 /* 
 .portfolioGrid {
@@ -166,6 +201,7 @@
   border-left: 4px solid #333;
   cursor: pointer;
   margin-bottom: 15px;
+  min-width: 0;
 }
 
 .portfolioDivider {
@@ -242,29 +278,43 @@
   font-size: 14px;
   color: #555;
   line-height: 1.6;
+  overflow-wrap: anywhere;
 }
 
 .portfolioField {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  column-gap: 12px;
   font-size: 14px;
   line-height: 1.6;
   color: #333;
   margin-bottom: 8px;
-  position: relative;
-  padding-left: 100px;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .portfolioField strong {
-  position: absolute;
-  left: 0;
-  width: 90px;
   font-weight: 600;
   color: #000;
-  white-space: nowrap;
 }
 
 .portfolioTextBlock {
   display: inline-block;
   white-space: pre-wrap;
+}
+
+.portfolioValue {
+  padding-left: 0;
+}
+
+.portfolioList {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.portfolioList li {
+  list-style: disc;
+  margin-bottom: 4px;
 }
 
 .portfolioImage {
@@ -325,4 +375,78 @@
 
 .imageModalClose:hover {
   background: #fff;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .mainContent {
+    order: 1;
+    box-sizing: border-box;
+    padding: 32px 24px;
+  }
+
+  .sidebar {
+    order: 2;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 28px 24px;
+  }
+
+  .portfolioDetailRow {
+    flex-direction: column;
+  }
+
+  .portfolioImageBox {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+  }
+}
+
+@media (max-width: 720px) {
+  .mainContent {
+    padding: 24px 18px;
+  }
+
+  .mainHeading {
+    font-size: 22px;
+    line-height: 1.35;
+  }
+
+  .subtitle {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .timelineItem,
+  .portfolioCard {
+    border-radius: 6px;
+  }
+
+  .portfolioHeader {
+    align-items: flex-start;
+  }
+
+  .portfolioTitle {
+    font-size: 18px;
+    line-height: 1.35;
+  }
+
+  .portfolioDate {
+    display: block;
+    margin: 4px 0 0;
+  }
+
+  .portfolioField {
+    display: block;
+  }
+
+  .portfolioField strong {
+    display: block;
+    margin-bottom: 4px;
+  }
+
 }

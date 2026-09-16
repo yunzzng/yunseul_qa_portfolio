@@ -15,30 +15,57 @@ import mysqlIcon from "/icons/skill/mysql.png";
 import notionIcon from "/icons/skill/notion.png";
 import mongodbIcon from "/icons/skill/mongodb.png";
 import dbeaverIcon from "/icons/skill/dbeaver.png";
+const playwrightIcon = "/icons/skill/playwright-logo.svg?v=20260916";
 
 export type Skill = {
   name: string;
-  icon: string;
+  icon?: string;
 };
 
-const skills: Skill[] = [
-  { name: "Claude", icon: claudeIcon },
-  { name: "Cursor", icon: cursorIcon },
-  { name: "Confluence", icon: confluenceIcon },
-  { name: "Jira", icon: jiraIcon },
-  { name: "Postman", icon: postmanIcon },
-  { name: "Python", icon: pythonIcon },
-  { name: "DBeaver", icon: dbeaverIcon },
-  { name: "PostgreSQL", icon: postgresqlIcon },
-  { name: "MySQL", icon: mysqlIcon },
-  { name: "MongoDB", icon: mongodbIcon },
-  { name: "Notion", icon: notionIcon },
-  { name: "Figma", icon: figmaIcon },
-  { name: "Adobe XD", icon: adobeXdIcon },
-  { name: "Photoshop", icon: photoshopIcon },
-  { name: "Illustrator", icon: illustratorIcon },
-  { name: "Github", icon: githubIcon },
-  { name: "GitLab", icon: gitlabIcon },
+export type SkillGroup = {
+  category: string;
+  items: Skill[];
+};
+
+const skills: SkillGroup[] = [
+  {
+    category: "QA·자동화",
+    items: [
+      { name: "Jira", icon: jiraIcon },
+      { name: "Postman", icon: postmanIcon },
+      { name: "Playwright", icon: playwrightIcon },
+    ],
+  },
+  {
+    category: "API·데이터 검증",
+    items: [
+      { name: "DBeaver", icon: dbeaverIcon },
+      { name: "PostgreSQL", icon: postgresqlIcon },
+      { name: "MySQL", icon: mysqlIcon },
+      { name: "MongoDB", icon: mongodbIcon },
+    ],
+  },
+  {
+    category: "협업·형상 관리",
+    items: [
+      { name: "GitHub", icon: githubIcon },
+      { name: "GitLab", icon: gitlabIcon },
+      { name: "Confluence", icon: confluenceIcon },
+      { name: "Notion", icon: notionIcon },
+    ],
+  },
+  {
+    category: "개발·AI·디자인",
+    items: [
+      { name: "Python", icon: pythonIcon },
+      { name: "Claude", icon: claudeIcon },
+      { name: "Cursor", icon: cursorIcon },
+      { name: "Figma", icon: figmaIcon },
+      { name: "Adobe XD", icon: adobeXdIcon },
+      { name: "Photoshop", icon: photoshopIcon },
+      { name: "Illustrator", icon: illustratorIcon },
+    ],
+  },
 ];
 
 export default skills;

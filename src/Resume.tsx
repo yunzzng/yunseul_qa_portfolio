@@ -87,28 +87,30 @@ const Resume: FC = () => {
         </div>
 
         <div className={styles.section}>
-          <h3 className={styles.sectionTitle}>스킬</h3>
-          <div className={styles.skillIconsContainer}>
-            {skills.map((skill, index) => (
-              <img
-                key={index}
-                src={skill.icon}
-                alt={skill.name}
-                className={styles.skillIcon}
-              />
-            ))}
+          <h3 className={styles.sectionTitle}>기술 스택</h3>
+          <div className={styles.sidebarSkillList}>
+            {skills.map((group) =>
+              group.items.map((skill) => (
+                <span key={`${group.category}-${skill.name}`} className={styles.sidebarSkillItem}>
+                  {skill.icon && (
+                    <img
+                      src={skill.icon}
+                      alt=""
+                      aria-hidden="true"
+                      className={styles.skillIcon}
+                    />
+                  )}
+                  {skill.name}
+                </span>
+              ))
+            )}
           </div>
         </div>
       </aside>
 
       <main className={styles.mainContent}>
-        <h1 className={styles.mainHeading}>데이터 기반 검증과 자동화를 통해 품질을 개선하는 QA 엔지니어</h1>
+        <h1 className={styles.mainHeading}>API·DB 정합성 검증과 테스트 자동화를 수행하는 QA 엔지니어</h1>
         <p className={styles.subtitle}>{aboutMe.introduction}</p>
-        {aboutMe.details.map((text, idx) => (
-          <p key={idx} className={styles.subtitle}>
-            {text}
-          </p>
-        ))}
 
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>경력</h2>
@@ -119,7 +121,11 @@ const Resume: FC = () => {
                 <p className={styles.jobCompany}>
                   {exp.company} ({exp.period})
                 </p>
-                <p className={styles.jobDescription}>{exp?.description}</p>
+                <ul className={styles.jobDescriptionList}>
+                  {exp.description.map((item, idx) => (
+                    <li key={idx}>{item}</li>
+                  ))}
+                </ul>
               </div>
             ))}
           </div>
@@ -148,7 +154,7 @@ const Resume: FC = () => {
                     {portfolio.subtitle}
                   </strong>
                   <span className={styles.projectText}>
-                    {portfolio.description}
+                    {portfolio.overview}
                   </span>
                 </p>
 
@@ -157,43 +163,30 @@ const Resume: FC = () => {
                 <div className={styles.portfolioDetailRow}>
                   <div className={styles.portfolioDetails}>
                     <p className={styles.portfolioField}>
-                      <strong>기여도:</strong>
+                      <strong>수행 형태:</strong>
                       <span className={styles.portfolioValue}>
-                        {portfolio.contribution}
+                        {portfolio.executionType}
                       </span>
                     </p>
 
-                    {portfolio.dataset && (
+                    {portfolio.implementations && (
                       <div className={styles.portfolioField}>
-                        <strong>데이터셋:</strong>
+                        <strong>주요 구현:</strong>
                         <ul className={styles.portfolioList}>
-                          {portfolio.dataset.map((item, idx) => (
+                          {portfolio.implementations.map((item, idx) => (
                             <li key={idx}>{item}</li>
                           ))}
                         </ul>
                       </div>
                     )}
 
-                    {portfolio.analysis && (
-                      <div className={styles.portfolioField}>
-                        <strong>분석결과:</strong>
-                        <ul className={styles.portfolioList}>
-                          {portfolio.analysis.map((item, idx) => (
-                            <li key={idx}>{item}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-
-                    {portfolio.insight && (
-                      <div className={styles.portfolioField}>
-                        <strong>인사이트:</strong>
-                        <ul className={styles.portfolioList}>
-                          {portfolio.insight.map((item, idx) => (
-                            <li key={idx}>{item}</li>
-                          ))}
-                        </ul>
-                      </div>
+                    {portfolio.result && (
+                      <p className={styles.portfolioField}>
+                        <strong>검증 결과 또는 기대 효과:</strong>
+                        <span className={styles.portfolioValue}>
+                          {portfolio.result}
+                        </span>
+                      </p>
                     )}
                   </div>
 
