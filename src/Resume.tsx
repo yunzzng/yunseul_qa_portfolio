@@ -88,16 +88,28 @@ const Resume: FC = () => {
                 <h4 className={styles.sidebarSkillGroupTitle}>{group.category}</h4>
                 <div className={styles.sidebarSkillItems}>
                   {group.items.map((skill) => (
-                    <span key={`${group.category}-${skill.name}`} className={styles.sidebarSkillItem}>
-                      {skill.icon && (
-                        <img
-                          src={skill.icon}
-                          alt=""
-                          aria-hidden="true"
-                          className={styles.skillIcon}
-                        />
+                    <span
+                      key={`${group.category}-${skill.name}`}
+                      className={`${styles.sidebarSkillItem} ${
+                        skill.description ? styles.sidebarSkillItemWide : ""
+                      }`}
+                    >
+                      <span className={styles.sidebarSkillName}>
+                        {skill.icon && (
+                          <img
+                            src={skill.icon}
+                            alt=""
+                            aria-hidden="true"
+                            className={styles.skillIcon}
+                          />
+                        )}
+                        {skill.name}
+                      </span>
+                      {skill.description && (
+                        <span className={styles.sidebarSkillDescription}>
+                          {skill.description}
+                        </span>
                       )}
-                      {skill.name}
                     </span>
                   ))}
                 </div>
@@ -180,9 +192,11 @@ const Resume: FC = () => {
                   <strong className={styles.projectLabel}>
                     {portfolio.subtitle}
                   </strong>
-                  <span className={styles.projectText}>
-                    {portfolio.overview}
-                  </span>
+                  {portfolio.overview && (
+                    <span className={styles.projectText}>
+                      {portfolio.overview}
+                    </span>
+                  )}
                 </p>
 
                 <p className={styles.projectOpenHint}>{portfolio.ctaLabel}</p>

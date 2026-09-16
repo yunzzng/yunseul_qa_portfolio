@@ -20,6 +20,7 @@ const playwrightIcon = "/icons/skill/playwright-logo.svg?v=20260916";
 export type Skill = {
   name: string;
   icon?: string;
+  description?: string;
 };
 
 export type SkillGroup = {
@@ -58,7 +59,7 @@ const skills: SkillGroup[] = [
     category: "개발·AI 활용",
     items: [
       { name: "Python", icon: pythonIcon },
-      { name: "Claude", icon: claudeIcon },
+      {name: "Claude", icon: claudeIcon,},
       { name: "Cursor", icon: cursorIcon },
     ],
   },
