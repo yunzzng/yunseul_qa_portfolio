@@ -173,6 +173,7 @@ const Resume: FC = () => {
                 <p className={styles.jobCompany}>
                   {exp.role} · {exp.period}
                 </p>
+                <hr className={styles.jobDivider} />
                 <p className={styles.jobSectionLabel}>담당 업무</p>
                 <ul className={styles.jobDescriptionList}>
                   {exp.description.map((item, idx) => (

@@ -254,8 +254,14 @@
   word-break: break-word;
 }
 
+.jobDivider {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 16px 0 12px;
+}
+
 .jobSectionLabel {
-  margin: 12px 0 0;
+  margin: 0;
   font-size: 14px;
   font-weight: 700;
   color: #333;
