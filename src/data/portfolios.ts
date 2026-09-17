@@ -46,7 +46,7 @@ const portfolios: Portfolio[] = [
       "응답 시간, 상태 코드, 호출 횟수 통계 제공",
       "API 호출 현황 대시보드",
     ],
-    ctaLabel: "프로젝트 보기 ↗",
+    ctaLabel: "API 흐름 대시보드 보기 ↗",
     output: "https://encar-hackathon.vercel.app/",
     image: "/img/encar-hackathon.png",
   },

@@ -153,7 +153,23 @@ const Resume: FC = () => {
           <div className={styles.timeline}>
             {educationAndExperience.experience.map((exp, index) => (
               <div key={index} className={styles.timelineItem}>
-                <h3 className={styles.jobTitle}>{exp.company}</h3>
+                {exp.artifactUrl && (
+                  <a
+                    href={exp.artifactUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.jobCardLink}
+                    aria-label={`${exp.company} ${exp.artifactLabel}`}
+                  />
+                )}
+                <div className={styles.jobHeader}>
+                  <h3 className={styles.jobTitle}>{exp.company}</h3>
+                  {exp.artifactLabel && (
+                    <span className={styles.jobArtifactLink}>
+                      {exp.artifactLabel}
+                    </span>
+                  )}
+                </div>
                 <p className={styles.jobCompany}>
                   {exp.role} · {exp.period}
                 </p>
@@ -186,6 +202,7 @@ const Resume: FC = () => {
 
                 <div className={styles.portfolioHeader}>
                   <h3 className={styles.portfolioTitle}>{portfolio.title}</h3>
+                  <p className={styles.projectOpenHint}>{portfolio.ctaLabel}</p>
                 </div>
 
                 <p className={styles.portfolioDescription}>
@@ -198,8 +215,6 @@ const Resume: FC = () => {
                     </span>
                   )}
                 </p>
-
-                <p className={styles.projectOpenHint}>{portfolio.ctaLabel}</p>
 
                 <hr className={styles.portfolioDivider} />
 

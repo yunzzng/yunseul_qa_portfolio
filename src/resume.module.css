@@ -201,6 +201,45 @@
   word-break: break-word;
 }
 
+.jobHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.jobTitle {
+  margin: 0;
+  color: #222;
+  font-size: 18px;
+  line-height: 1.35;
+}
+
+.jobCompany {
+  margin: 6px 0 0;
+  color: #555;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.jobArtifactLink {
+  position: relative;
+  z-index: 2;
+  flex: 0 0 auto;
+  padding: 6px 10px;
+  border: 1px solid #1f5fd1;
+  border-radius: 999px;
+  background: #1f5fd1;
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(31, 95, 209, 0.24);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: none;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
 .jobDescriptionList {
   margin: 6px 0 0;
   padding-left: 18px;
@@ -237,6 +276,7 @@
 }
 
 .timelineItem {
+  position: relative;
   padding: 15px;
   border-left: 4px solid #333;
   background: #f9f9f9;
@@ -244,6 +284,26 @@
   padding-left: 10px;
   min-width: 0;
   max-width: 100%;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.timelineItem:hover {
+  background: #e6f0ff;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.timelineItem:focus-within {
+  outline: 3px solid #5b8def;
+  outline-offset: 3px;
+  background: #e6f0ff;
+}
+
+.jobCardLink {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: 8px;
 }
 /* 
 .portfolioGrid {
@@ -330,13 +390,16 @@ button.portfolioImageBox {
 .portfolioHeader {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: flex-start;
+  gap: 12px;
 }
 
 .portfolioTitle {
+  margin: 0;
   font-size: 20px;
   font-weight: 700;
   color: #222;
+  line-height: 1.35;
 }
 
 .portfolioValue {
@@ -366,10 +429,21 @@ button.portfolioImageBox {
 }
 
 .projectOpenHint {
-  margin: 10px 0 0;
-  color: #333;
+  position: relative;
+  z-index: 2;
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 6px 10px;
+  border: 1px solid #1f5fd1;
+  border-radius: 999px;
+  background: #1f5fd1;
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(31, 95, 209, 0.24);
   font-size: 13px;
   font-weight: 700;
+  line-height: 1.2;
+  pointer-events: none;
+  white-space: nowrap;
 }
 
 .portfolioField {
@@ -423,7 +497,6 @@ button.portfolioImageBox {
 
 .portfolioCard:hover {
   background: #e6f0ff;
-  transform: translateY(-3px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
@@ -538,11 +611,28 @@ button.portfolioImageBox {
 
   .portfolioHeader {
     align-items: flex-start;
+    flex-wrap: wrap;
   }
 
   .portfolioTitle {
     font-size: 18px;
     line-height: 1.35;
+  }
+
+  .jobHeader {
+    flex-wrap: wrap;
+  }
+
+  .jobArtifactLink {
+    margin-left: auto;
+    white-space: normal;
+    text-align: right;
+  }
+
+  .projectOpenHint {
+    margin-left: auto;
+    white-space: normal;
+    text-align: right;
   }
 
   .sidebarSkillItems {
