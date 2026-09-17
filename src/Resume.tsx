@@ -8,6 +8,9 @@ import profileImg from "/img/yunseul.jpg";
 import githubIcon from "/icons/skill/github.png";
 import aboutMe from "./data/about";
 
+const qaJournalIcon =
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231858dd'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='Arial,sans-serif' font-size='29' font-weight='700' fill='%23fff'%3EQA%3C/text%3E%3C/svg%3E";
+
 const Resume: FC = () => {
   const [expandedImage, setExpandedImage] = useState<{
     src: string;
@@ -68,13 +71,26 @@ const Resume: FC = () => {
           <h3 className={styles.sectionTitle}>연락처</h3>
           <ul className={styles.list}>
             <li>yun.zzang9.me@gmail.com</li>
-            <li>
+            <li className={styles.contactIconList}>
               <a
                 href="https://github.com/yunzzng?tab=repositories&q=&type=public&language=&sort="
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="GitHub 저장소"
               >
                 <img src={githubIcon} alt="GitHub" className={styles.icon} />
+              </a>
+              <a
+                href="https://qa-study-journal.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="QA 스터디 저널"
+              >
+                <img
+                  src={qaJournalIcon}
+                  alt="QA"
+                  className={`${styles.icon} ${styles.qaJournalIcon}`}
+                />
               </a>
             </li>
           </ul>
