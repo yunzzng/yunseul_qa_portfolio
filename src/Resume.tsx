@@ -152,7 +152,12 @@ const Resume: FC = () => {
           <h2 className={styles.sectionTitle}>경력</h2>
           <div className={styles.timeline}>
             {educationAndExperience.experience.map((exp, index) => (
-              <div key={index} className={styles.timelineItem}>
+              <div
+                key={index}
+                className={`${styles.timelineItem} ${
+                  exp.artifactUrl ? styles.timelineItemLinked : ""
+                }`}
+              >
                 {exp.artifactUrl && (
                   <a
                     href={exp.artifactUrl}

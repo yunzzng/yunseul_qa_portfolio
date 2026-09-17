@@ -290,8 +290,11 @@
   padding-left: 10px;
   min-width: 0;
   max-width: 100%;
-  cursor: pointer;
   transition: background 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.timelineItemLinked {
+  cursor: pointer;
 }
 
 .timelineItem:hover {

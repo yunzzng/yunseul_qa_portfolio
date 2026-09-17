@@ -13,7 +13,6 @@ const experience: Experience[] = [
     role: "QA 엔지니어",
     period: "2025.07 – 재직 중",
     artifactLabel: "TC 자동화 대시보드 보기 ↗",
-    artifactUrl: "https://checklist-auto-dashboard.vercel.app/",
     description: [
       "테스트 계획 수립부터 테스트 수행, 결함 관리, 릴리즈 검증 및 Sign-off까지 QA 전 과정을 수행했습니다.",
       "중고차 플랫폼의 업무 흐름과 예외 조건을 반영해 테스트 시나리오를 설계하고, API 응답과 DB 데이터의 정합성을 검증했습니다.",
